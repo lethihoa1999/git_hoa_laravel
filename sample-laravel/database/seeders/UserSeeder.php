@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Str;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class UserSeeder extends Seeder
         foreach (range(1,100) as $value) {
             DB::table('users')->insert([
                 'mail_address' => $faker->unique()->safeEmail,
-                'password' => $faker->password,
+                'password' => Hash::make('abc'),
                 'name' => $faker->name,
                 'address' => $faker->address,
                 'phone' => $faker->phoneNumber,
@@ -28,4 +29,3 @@ class UserSeeder extends Seeder
         }
     }
 }
-
