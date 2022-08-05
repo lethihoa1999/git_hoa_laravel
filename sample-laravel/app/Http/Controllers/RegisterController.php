@@ -9,7 +9,7 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
-    public function valid(Request $request) 
+    public function checkValidate(Request $request) 
     {
         $request->validate([
             'mail_address' => 'required|email|unique:users|max:100',
@@ -20,18 +20,18 @@ class RegisterController extends Controller
             'phone' => 'numeric|digits_between:1,15',
         ]);
         $data = new User();
-        $query = $data->add_data($request);     
+        $query = $data->addUser($request);     
         if($query) {
-            return redirect()->route('user')->with('success','Thêm mới người dùng thành công.');
+            return redirect()->route('users')->with('success','Thêm mới người dùng thành công.');
         } else {
-            return redirect()->route('user')->with('fail','Thêm mới người dùng thất bại.');
+            return redirect()->route('users')->with('fail','Thêm mới người dùng thất bại.');
         }
     }
 
-    public function show_table()
+    public function showTableUser()
     {
     	$model = new User();
-        $user = $model->table_show();
+        $user = $model->showTable();
         return view('users')->with(compact('user'));
     }
 }

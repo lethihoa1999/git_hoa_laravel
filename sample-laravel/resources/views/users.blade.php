@@ -53,6 +53,7 @@
             @endforeach
         </table>
         <div>{{ $user->links() }}</div>  
+        <a href={{ route('registers') }} class="btn btn-primary">Register</a>
     </div>
 </body>
 </html>

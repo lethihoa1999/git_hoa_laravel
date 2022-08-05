@@ -5,18 +5,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 
-Route::get('users', [
-    UserController::class, 'index'
-]);
+// Route::get('users', [
+//     UserController::class, 'index'
+// ]);
 
-Route::get('register', function () {
+Route::get('/registers', function () {
     return view('register');    
-});
+})->name('registers');
 
-Route::post('register_validate', [
-    RegisterController::class, 'valid'
-])->name('regis');
+Route::post('/validates', [
+    RegisterController::class, 'checkValidate'
+])->name('validates');
 
-Route::get('user', [
-    RegisterController::class, 'show_table'
-])->name('user');
+Route::get('/users', [
+    RegisterController::class, 'showTableUser'
+])->name('users');

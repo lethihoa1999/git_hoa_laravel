@@ -27,12 +27,12 @@ class User extends Authenticatable
         'phone',
     ];
 
-    public function table_show()
+    public function showTable()
     {
         return User::orderBy('mail_address', 'ASC')->paginate(20);
     }
 
-    public function add_data($request){
+    public function addUser($request){
         return DB::table('users')->insert([
             'mail_address'=>$request->input('mail_address'),
             'password'=>Hash::make($request->input('password')),
