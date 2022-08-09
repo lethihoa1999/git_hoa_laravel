@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -27,18 +29,19 @@ class User extends Authenticatable
         'phone',
     ];
 
-    public function showTable()
+    public function listUser() 
     {
-        return User::orderBy('mail_address', 'ASC')->paginate(20);
+        return self::select('mail_address', 'password', 'name', 'address', 'phone',)->orderBy('mail_address', 'ASC')->paginate(20);
     }
 
-    public function addUser($request){
-        return DB::table('users')->insert([
-            'mail_address'=>$request->input('mail_address'),
-            'password'=>Hash::make($request->input('password')),
-            'name'=>$request->input('name'),
-            'address'=>$request->input('address'),
-            'phone'=>$request->input('phone'),
+    public function createUser($request) 
+    {
+        return self::create([
+            'mail_address' => $request->mail_address,
+            'password' => Hash::make($request->password),
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
         ]);
     }
 

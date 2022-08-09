@@ -1,1 +1,0 @@
-<h1 style = "text-align:center;">Tự học lập trình Laravel</h1>
