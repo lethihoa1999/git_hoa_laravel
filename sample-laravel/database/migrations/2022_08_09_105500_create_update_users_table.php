@@ -14,10 +14,11 @@ class CreateUpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('name', 255)->change();
-            $table->renameColumn('email', 'mail_address', 100)->unique();
+            $table->string('name', 255)->change();
+            $table->dropColumn('email');   
+            $table->string('mail_address', 100)->unique();
             $table->dropColumn('email_verified_at');
-            $table->renameColumn('password', 255)->change();
+            $table->string('password', 255)->change();
             $table->dropColumn('remember_token');   
             $table->dropColumn('current_team_id'); 
             $table->dropColumn('profile_photo_path'); 
@@ -34,8 +35,11 @@ class CreateUpdateUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('mail_address', 'email');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->dropColumn('mail_address');
             $table->timestamp('email_verified_at')->nullable(); 
+            $table->string('password');
             $table->rememberToken();   
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
