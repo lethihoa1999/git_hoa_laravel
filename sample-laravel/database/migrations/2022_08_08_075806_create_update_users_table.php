@@ -14,10 +14,10 @@ class CreateUpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('name', 'name', 255);
+            $table->renameColumn('name', 255)->change();
             $table->renameColumn('email', 'mail_address', 100)->unique();
             $table->dropColumn('email_verified_at');
-            $table->renameColumn('password', 'password', 255);
+            $table->renameColumn('password', 255)->change();
             $table->dropColumn('remember_token');   
             $table->dropColumn('current_team_id'); 
             $table->dropColumn('profile_photo_path'); 

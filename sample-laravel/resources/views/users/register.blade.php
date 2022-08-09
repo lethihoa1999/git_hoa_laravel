@@ -10,7 +10,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user" method="post" action="{{ Route('users.store') }}">
+                            <form class="user" method="post" action="{{ route('users.store') }}">
                                 @csrf     
                                 <div class="form-group mb-2">
                                     <input type="text" class="form-control form-control-user" name="mail_address" id="email" placeholder="Email" value="{{ old('mail_address') }}">
