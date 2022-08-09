@@ -21,7 +21,7 @@
                     <th>Số điện thoại</th>
                 </tr>
             </thead>
-            @foreach ($users as $key=>$use)
+            @foreach ($users as $key => $use)
             <tr>
                 <td>{{ $users->firstItem() + $key }}</td>
                 <td>{{ $use->mail_address }}</td>
